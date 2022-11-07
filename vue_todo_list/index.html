@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Список задач</h1>
+        <div class="form">
+            <input v-model="message"  @keyup.enter="submit">
+            <button type="button" @click="addTask">Добавить</button>
+          </div>
+        <h3>Количество лайков: {{ countLikes }}</h3>
+        <div v-if="count == 0">Вы справились!</div>
+        <div v-else-if="count == 1">Еще немного!</div>
+        <div v-else>Осталось сделать задач: <span class="counter">{{ count }}</span></div>
+        <task-list v-if="countUncompletedTasks !== 0" :tasks="uncompletedTasks"></task-list>
+        <h2 v-if="countCompletedTasks !== 0">Завершенные задачи</h2>
+        <task-list v-if="countCompletedTasks !== 0" :tasks="completedTasks">
+        </task-list>
+        <transition name="fade">
+        <img src="https://i.playground.ru/e/kkAOdYfR6BEl61tKPHu3VQ.jpeg" v-show="count == 0">
+         </transition>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
